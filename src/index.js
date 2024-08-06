@@ -12,8 +12,9 @@ const connectDB = require('./config/db');
 const eventHandler = require('./handlers/eventHandler');
 
 const User = require("./schemas/UserSchema");
-const Inventory = require("./schemas/CardInventorySchema");
+const Inventory = require("./schemas/InventorySchema");
 const Guild = require("./schemas/GuildSchema");
+const Cards = require("./schemas/CardCollectionSchema");
 
 const PREFIX = '.'; // Command prefix
 

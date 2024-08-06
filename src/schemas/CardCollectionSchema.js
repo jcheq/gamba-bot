@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const CardInventorySchema = new mongoose.Schema({
+const CardCollectionSchema = new mongoose.Schema({
     userID: {
         type: String,
     },
@@ -19,4 +19,4 @@ const CardInventorySchema = new mongoose.Schema({
     
   });
   
-  module.exports = mongoose.model('CardInventory', CardInventorySchema);
+  module.exports = mongoose.model('CardCollections', CardCollectionSchema);
