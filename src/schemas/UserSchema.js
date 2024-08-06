@@ -5,8 +5,8 @@ const UserSchema = new mongoose.Schema({
         type: String,
     },
 
-    balance: {
-        type: String,
+    power: {
+        type: Number,
     },
 
     guildName: {
@@ -14,5 +14,6 @@ const UserSchema = new mongoose.Schema({
     }
     
   });
+
   
   module.exports = mongoose.model('User', UserSchema);
