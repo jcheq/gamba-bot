@@ -1,4 +1,8 @@
-const { SlashCommandBuilder } = require('discord.js');
+const {
+  ApplicationCommandOptionType,
+  PermissionFlagsBits,
+  SlashCommandBuilder,
+} = require('discord.js');
 
 
 module.exports = {
@@ -10,31 +14,29 @@ module.exports = {
 				.setDescription('shopItem')
         .setRequired(true)
 				.setAutocomplete(true))
-		.addStringOption(option =>
+		.addIntegerOption(option =>
 			option.setName('amount')
-				.setDescription('amt')
-        .setRequired(true)
-				.setAutocomplete(true)),
-	async autocomplete(interaction) {
+				.setDescription('amount')
+        .addChoices()
+        .setMinValue(0)
+        .setMaxValue(100)
+        .setRequired(true)),
+  
+	async execute(interaction) {
     
     const focusedOption = interaction.options.getFocused(true);
 		let choices;
 
-    console.log("sdfsdfs");
-
+    console.log("SDFSDFDSFDSD");
 		if (focusedOption.name === 'shop-item') {
-			choices = ['Popular Topics: Threads', 'Sharding: Getting started', 'Library: Voice Connections', 'Interactions: Replying to slash commands', 'Popular Topics: Embed preview'];
-		}
-
-		if (focusedOption.name === 'amount') {
-			choices = ['v9', 'v11', 'v12', 'v13', 'v14'];
+			choices = ['Draw Ticket x1 [500 Coins]'];
 		}
 
 		const filtered = choices.filter(choice => choice.startsWith(focusedOption.value));
 		await interaction.respond(
 			filtered.map(choice => ({ name: choice, value: choice })),
     );
-  },
+  }, 
   
 };
 

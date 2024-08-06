@@ -14,17 +14,17 @@ const {
           .setDescription('item')
           .setRequired(true)
           .setAutocomplete(true))
-      .addStringOption(option =>
+      .addIntegerOption(option =>
         option.setName('amount')
-          .setDescription('amt')
-          .setRequired(true)
-          .setAutocomplete(true)),
-    async autocomplete(interaction) {
+           .setDescription('amount')
+           .addChoices()
+           .setRequired(true)),
+    async execute(interaction) {
       
       const focusedOption = interaction.options.getFocused(true);
       let choices;
   
-      console.log(focusedOption);
+      // console.log(focusedOption);
   
       if (focusedOption.name === 'item-index') {
         choices = ['Popular Topics: Threads', 'Sharding: Getting started', 'Library: Voice Connections', 'Interactions: Replying to slash commands', 'Popular Topics: Embed preview'];
@@ -49,6 +49,7 @@ const {
 //     description: 'Use item from inventory',
 //     // devOnly: Boolean,
 //     testOnly: true,
+//     autocomplete: true,
 //     options: [
 //         {
 //           name: 'item-index',

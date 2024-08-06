@@ -2,9 +2,54 @@ const { devs, testServer } = require('../../../config.json');
 const getLocalCommands = require('../../utils/getLocalCommands');
 
 module.exports = async (client, interaction) => {
-  if (!interaction.isChatInputCommand()) return;
-
+  // if (!interaction.isChatInputCommand()) return;
+  if (!interaction.isAutocomplete() == 'amount') return;
   const localCommands = getLocalCommands();
+
+
+  // console.log(interaction.commandName);
+
+
+  if (interaction.isAutocomplete()) {
+    const focusedOption = interaction.options.getFocused(true);
+    if(focusedOption.name === 'shop-item') {
+      choices = ['Draw Ticket x1 [500 Coins]'];
+      const filtered = choices.filter(choice => choice.startsWith(focusedOption.value));
+      await interaction.respond(
+        filtered.map(choice => ({ name: choice, value: choice })),
+        
+      );
+      return;
+    }
+    if (focusedOption.name === 'item-index') {
+      choices = ['Draw Ticket x1 [500 Coins]'];
+      const filtered = choices.filter(choice => choice.startsWith(focusedOption.value));
+      await interaction.respond(
+        filtered.map(choice => ({ name: choice, value: choice })),
+        
+      );
+      return;
+    }
+    
+
+    
+    
+    // const focusedOption = interaction.options.getFocused(true);
+    // let choices;
+
+    // if (focusedOption.name === 'shop-item') {
+    //   choices = ['Draw Ticket x1 [500 Coins]'];
+    // }
+
+    // const filtered = choices.filter(choice => choice.startsWith(focusedOption.value));
+    // await interaction.respond(
+    //   filtered.map(choice => ({ name: choice, value: choice })),
+      
+    // );
+    
+
+  }
+
 
   try {
     const commandObject = localCommands.find(
