@@ -8,7 +8,7 @@ module.exports = async (client, interaction) => {
   
 
   if (interaction.isChatInputCommand()) {
-		// command handling
+    
 	} else if (interaction.isAutocomplete()) {
 		const command = localCommands.find(
       (cmd) => cmd.data.name === interaction.commandName
@@ -81,7 +81,7 @@ module.exports = async (client, interaction) => {
         }
       }
     }
-    // await commandObject.execute(interaction);
+    await commandObject.execute(interaction);
     // await commandObject.callback(client, interaction);
   } catch (error) {
     console.log(`There was an error running this command: ${error}`);

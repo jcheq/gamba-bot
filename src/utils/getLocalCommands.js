@@ -11,6 +11,7 @@ module.exports = (exceptions = []) => {
 
   for (const commandCategory of commandCategories) {
     const commandFiles = getAllFiles(commandCategory);
+    // console.log(commandFiles);
 
     for (const commandFile of commandFiles) {
       const commandObject = require(commandFile);
@@ -20,7 +21,8 @@ module.exports = (exceptions = []) => {
       }
 
       localCommands.push(commandObject);
-
+      // console.log(commandObject)
+      
       
     }
   }

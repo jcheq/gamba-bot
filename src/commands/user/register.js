@@ -10,7 +10,7 @@ const {
       .setName('register')
       .setDescription('Use item from inventory'),
     async execute(interaction) {
-        console.log("Register");
+        console.log(interaction);
       
     
     },
