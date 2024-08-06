@@ -12,22 +12,20 @@ module.exports = {
 		.addStringOption(option =>
 			option.setName('shop-item')
 				.setDescription('shopItem')
-        .setRequired(true)
+        		.setRequired(true)
 				.setAutocomplete(true))
 		.addIntegerOption(option =>
 			option.setName('amount')
 				.setDescription('amount')
-        .addChoices()
-        .setMinValue(0)
-        .setMaxValue(100)
-        .setRequired(true)),
+        		.addChoices()
+        		.setMinValue(0)
+        		.setMaxValue(100)
+        		.setRequired(true)),
   
 	async execute(interaction) {
-    
-    const focusedOption = interaction.options.getFocused(true);
+		console.log("autocomplete");
+    	const focusedOption = interaction.options.getFocused(true);
 		let choices;
-
-    console.log("SDFSDFDSFDSD");
 		if (focusedOption.name === 'shop-item') {
 			choices = ['Draw Ticket x1 [500 Coins]'];
 		}

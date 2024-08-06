@@ -3,58 +3,35 @@ const getLocalCommands = require('../../utils/getLocalCommands');
 
 module.exports = async (client, interaction) => {
   // if (!interaction.isChatInputCommand()) return;
-  if (!interaction.isAutocomplete() == 'amount') return;
+
   const localCommands = getLocalCommands();
+  
 
+  if (interaction.isChatInputCommand()) {
+		// command handling
+	} else if (interaction.isAutocomplete()) {
+		const command = localCommands.find(
+      (cmd) => cmd.data.name === interaction.commandName
+    );
 
-  // console.log(interaction.commandName);
+		if (!command) {
+			console.error(`No command matching ${interaction.commandName} was found.`);
+			return;
+		}
 
-
-  if (interaction.isAutocomplete()) {
-    const focusedOption = interaction.options.getFocused(true);
-    if(focusedOption.name === 'shop-item') {
-      choices = ['Draw Ticket x1 [500 Coins]'];
-      const filtered = choices.filter(choice => choice.startsWith(focusedOption.value));
-      await interaction.respond(
-        filtered.map(choice => ({ name: choice, value: choice })),
-        
-      );
-      return;
-    }
-    if (focusedOption.name === 'item-index') {
-      choices = ['Draw Ticket x1 [500 Coins]'];
-      const filtered = choices.filter(choice => choice.startsWith(focusedOption.value));
-      await interaction.respond(
-        filtered.map(choice => ({ name: choice, value: choice })),
-        
-      );
-      return;
-    }
-    
-
-    
-    
-    // const focusedOption = interaction.options.getFocused(true);
-    // let choices;
-
-    // if (focusedOption.name === 'shop-item') {
-    //   choices = ['Draw Ticket x1 [500 Coins]'];
-    // }
-
-    // const filtered = choices.filter(choice => choice.startsWith(focusedOption.value));
-    // await interaction.respond(
-    //   filtered.map(choice => ({ name: choice, value: choice })),
-      
-    // );
-    
-
-  }
+		try {
+			await command.execute(interaction);
+		} catch (error) {
+			console.error(error);
+		}
+	}
 
 
   try {
     const commandObject = localCommands.find(
-      (cmd) => cmd.name === interaction.commandName
+      (cmd) => cmd.data.name === interaction.commandName
     );
+ 
 
     if (!commandObject) return;
 
@@ -104,8 +81,8 @@ module.exports = async (client, interaction) => {
         }
       }
     }
-
-    await commandObject.callback(client, interaction);
+    // await commandObject.execute(interaction);
+    // await commandObject.callback(client, interaction);
   } catch (error) {
     console.log(`There was an error running this command: ${error}`);
   }

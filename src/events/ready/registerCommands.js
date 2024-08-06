@@ -17,7 +17,7 @@ module.exports = async (client) => {
       const existingCommand = await applicationCommands.cache.find(
         (cmd) => cmd.name === name
       );
-
+      // console.log(existingCommand);
 
       // console.log("Existing: " + existingCommand);
       // console.log("Local: " + localCommand);
@@ -30,6 +30,8 @@ module.exports = async (client) => {
         }
 
         if (areCommandsDifferent(existingCommand, localCommand.data)) {
+          // console.log(existingCommand);
+          // console.log(localCommand.data);
 
           await applicationCommands.edit(existingCommand.id, {
             description,
