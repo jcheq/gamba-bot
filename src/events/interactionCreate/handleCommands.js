@@ -32,8 +32,8 @@ module.exports = async (client, interaction) => {
       (cmd) => cmd.data.name === interaction.commandName
     );
  
-
     if (!commandObject) return;
+
 
     if (commandObject.devOnly) {
       if (!devs.includes(interaction.member.id)) {

@@ -23,7 +23,7 @@ module.exports = {
         		.setRequired(true)),
   
 	async execute(interaction) {
-		console.log("autocomplete");
+		
     	const focusedOption = interaction.options.getFocused(true);
 		let choices;
 		if (focusedOption.name === 'shop-item') {
